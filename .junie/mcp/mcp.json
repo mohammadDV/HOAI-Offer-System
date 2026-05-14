@@ -1,0 +1,11 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "/Users/mohammaddv/.config/herd-lite/bin/php",
+            "args": [
+                "/Users/mohammaddv/projects/task/interview-task/hoai-trial/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}
