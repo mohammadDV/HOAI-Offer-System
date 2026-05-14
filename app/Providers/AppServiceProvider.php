@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\HoaiService\Contracts\HoaiCalculatorContract;
+use App\Services\HoaiService\HoaiCalculatorService;
 use Carbon\CarbonImmutable;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
@@ -15,7 +18,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(HoaiCalculatorService::class, function (Application $app): HoaiCalculatorService {
+
+            $config = $app->make('config')->get('hoai', []);
+
+            return new HoaiCalculatorService($config);
+        });
+
+        $this->app->bind(HoaiCalculatorContract::class, fn (Application $app): HoaiCalculatorContract => $app->make(HoaiCalculatorService::class));
     }
 
     /**
