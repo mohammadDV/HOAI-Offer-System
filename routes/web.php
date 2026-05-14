@@ -1,5 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 
-Route::view('/', 'welcome')->name('home');
+
+Volt::route('/', 'offers.index')->name('offers.index');
+Volt::route('offers/{offer}', 'offers.show')->name('offers.show');
